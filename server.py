@@ -30,7 +30,7 @@ def predict_image(IMG_PATH):
     arr_data = []
     for (label, p) in zip(labels, proba):
         # Append the result to arr_data
-        result = dict({"nama_tumbuhan": label, "score": "{:.2f}%".format(p * 100)})
+        result = dict({"nama_tumbuhan": label, "score": float("{:.2f}".format(p * 100))})
         arr_data.append(result)
 
     return {"data": arr_data}
