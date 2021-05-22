@@ -27,12 +27,13 @@ def predict_image(IMG_PATH):
     proba = model.predict(images)[0]
 
     # Create dict to save the results
-    results = {}
+    arr_data = []
     for (label, p) in zip(labels, proba):
-        # Append the result to dictionary
-        results[label] = "{:.2f}%".format(p * 100)
+        # Append the result to arr_data
+        result = dict({"nama_tumbuhan": label, "score": "{:.2f}%".format(p * 100)})
+        arr_data.append(result)
 
-    return results
+    return {"data": arr_data}
 
 
 # Initializing flask application
