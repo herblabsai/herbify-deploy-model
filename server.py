@@ -72,8 +72,11 @@ def process_req():
     # Move image to cloud storage
     subprocess.run(["gsutil", "mv", img_file, "gs://herbify/upload-images/"])
 
+    # Add img_file to response
+    image_name = {"imageUploaded": img_file}
+
     # Return response
-    return make_response(jsonify(predict_result), 200)
+    return make_response(jsonify({**image_name, **predict_result}), 200)
 
 
 if __name__ == "__main__":
